@@ -27,7 +27,11 @@ const {
     availableAmount,
     itemAmount,
     putCloset,
-    myMp
+    myMp,
+    canAdventure,
+    toLocation,
+    userConfirm,
+    myLevel
 } = require('kolmafia');
 
 const SAFETY_MARGIN = 1.05;
@@ -133,7 +137,7 @@ function customRestoreMp(amount) {
     if (amount >= 1000 && myMaxmp() - myMp() >= amount) {
         const sausagesToEat = Math.floor(amount / 1000);
         const sausagesRemainingToday = parseInt(getProperty('_sausagesEaten'));
-        if (sausagesToEat < (23 - sausagesRemainingToday) && availableAmount(toItem('magical sausage casing')) >= sausagesToEat ) {
+        if (sausagesToEat < (23 - sausagesRemainingToday) && availableAmount(toItem('magical sausage casing')) >= sausagesToEat) {
             eat(toItem('magical sausage'), sausagesToEat);
             amount -= sausagesToEat * 1000;
         }
@@ -593,13 +597,24 @@ function handleChallenge() {
     testFunc(level, parts);
 
     if (haveEffect(toEffect('Beaten Up'))) {
-        throw Error('Beaten Up');
+        throw Error('Oops. We got beaten up somehow.');
     }
 
     return level;
 }
 
 function main(args) {
+
+    if (!canAdventure(toLocation(`Fernswarthy's Basement`))) {
+        throw Error('You do not have access to the basement');
+    }
+
+    if (myLevel() < 30) {
+        if (!userConfirm("It's suggested to be level 30 before basement diving. Are you sure you want to proceed?")) {
+            return;
+        }
+    }
+
     ARGS.ignoreMonsterCheck = args && args.includes('noCheck');
     try {
         while (handleChallenge() < 500 && myAdventures() > 0) {
