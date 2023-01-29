@@ -31,7 +31,11 @@ const {
     canAdventure,
     toLocation,
     userConfirm,
-    myLevel
+    myLevel,
+    myHp,
+    toSkill,
+    haveSkill,
+    useSkill
 } = require('kolmafia');
 
 const SAFETY_MARGIN = 1.05;
@@ -371,7 +375,7 @@ function improveMp(required, step) {
 }
 
 function requiredHp(level) {
-    return Math.pow(level, 1.4) * 10 * (100 - damageAbsorptionPercent()) / 100;
+    return Math.pow(level, 1.415) * 10 * (100 - damageAbsorptionPercent()) / 100;
 }
 
 function checkHp(level) {
@@ -384,7 +388,11 @@ function improveHp(required, step) {
             cliExecute("maximize " + required + 1 + " hp, DA, switch Left-Hand Man, switch Disembodied Hand");
             return true;
         case 1:
+            haveSkill(toSkill('Ghostly Shell')) && useSkill(toSkill('Ghostly Shell'));
+            return true;
         case 2:
+            haveSkill(toSkill('Astral Shell')) && useSkill(toSkill('Astral Shell'));
+            return true;
         case 3:
             improveStat(required, step, MUS);
             return true;
@@ -400,7 +408,7 @@ function requiredElement(level, e1, e2) {
     const damage = (4.48 * Math.pow(level, 1.4)) + 8;
     const e1_damage = damage * ((100 - elementalResistance(e1)) / 100);
     const e2_damage = damage * ((100 - elementalResistance(e2)) / 100);
-    return (e1_damage + e2_damage) * SAFETY_MARGIN;
+    return Math.ceil((e1_damage + e2_damage) * SAFETY_MARGIN);
 }
 
 /**
@@ -606,7 +614,8 @@ function handleChallenge() {
 function main(args) {
 
     if (!canAdventure(toLocation(`Fernswarthy's Basement`))) {
-        throw Error('You do not have access to the basement');
+        print('You do not have access to the basement', 'red');
+        return;
     }
 
     if (myLevel() < 30) {
