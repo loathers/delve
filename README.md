@@ -1,4 +1,4 @@
-# LoathersBasement
+# Delve
 Script to get to level 500 in Fernswarthy's Basement.
 
 Install using `git checkout loathers/delve release` then just run `delve`
