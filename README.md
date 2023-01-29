@@ -1,7 +1,7 @@
 # LoathersBasement
 Script to get to level 500 in Fernswarthy's Basement.
 
-Install this using `git checkout loathers/LoathersBasement release`
+Install this using `git checkout loathers/delve release`
 
 ## Requirements:
 - Fernswarthy's Basement unlocked. Complete [The Wizard of Ego](https://kol.coldfront.net/thekolwiki/index.php/The_Wizard_of_Ego) manually.
