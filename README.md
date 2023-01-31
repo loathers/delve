@@ -1,4 +1,4 @@
-# Delve
+# ![delve_logo](https://user-images.githubusercontent.com/17497392/215860797-a12abb8b-5504-40da-a48b-2c572337fc09.png)
 Script to get to level 500 in Fernswarthy's Basement.
 
 Install using `git checkout loathers/delve release` then just run `delve`
