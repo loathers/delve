@@ -1,12 +1,15 @@
-# ![delve_logo](https://user-images.githubusercontent.com/17497392/215860797-a12abb8b-5504-40da-a48b-2c572337fc09.png)
-Script to get to level 500 in Fernswarthy's Basement.
+<img src="https://user-images.githubusercontent.com/17497392/215860797-a12abb8b-5504-40da-a48b-2c572337fc09.png" alt="delve logo" style="width: 35%;">
 
-Install using `git checkout loathers/delve release` then just run `delve`
+This script will get your character to level 500 in Fernswarthy's Basement in the [Kingdom of Loathing](https://www.kingdomofloathing.com/).
+
+In a recent version of [KoLMafia](https://github.com/kolmafia/kolmafia), install delve using `git checkout loathers/delve release` 
+
+Once installed, just run `delve` to descend into Fernswarthy's depths.
 
 ## Requirements:
-- Fernswarthy's Basement unlocked. Complete [The Wizard of Ego](https://kol.coldfront.net/thekolwiki/index.php/The_Wizard_of_Ego) manually.
-- Saucegeyser skill
-- Set below ccs as the Custom Combat in KoLMafia.
+- Fernswarthy's Basement must be unlocked. You need to complete [The Wizard of Ego](https://kol.coldfront.net/thekolwiki/index.php/The_Wizard_of_Ego) manually.
+- Your character needs to have access to the [Saucegeyser](https://kol.coldfront.net/thekolwiki/index.php/Saucegeyser) skill
+- Set below CCS as the Custom Combat script in KoLMafia.
 
 ```
 [ default ]
@@ -28,5 +31,5 @@ skill saucegeyser
 ```
 
 ## Cautions:
-- It is suggested to be level 30 before basement diving.
-- Maintaining required stat buffs is expensive. It can cost millions of meat. Closet all meat you don't want to use in the basement.
+- It is suggested to be level 30 before basement diving. It will greatly reduce the cost of the exercise.
+- Maintaining required stat buffs can be very expensive. It can cost millions of meat. If you don't want to use a ton of meat for this script, closet or convert it to dense meat stacks.
