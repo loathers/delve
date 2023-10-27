@@ -30,3 +30,6 @@ skill saucegeyser
 ## Cautions:
 - It is suggested to be level 30 before basement diving.
 - Maintaining required stat buffs is expensive. It can cost millions of meat. Closet all meat you don't want to use in the basement.
+
+## Problems?
+Message burningbman on discord.
