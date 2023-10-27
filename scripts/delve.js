@@ -457,7 +457,7 @@ const TESTS = {
      * @param {number} level  basement level
      * @param {string} challenge  value from CHALLENGE_MAP
      */
-    STAT: function(level, challenge) {
+    STAT: function (level, challenge) {
         const stat = toStat(challenge[1]);
         const required = requiredStat(level);
         print("Level " + level + " tests your " + stat, "green");
@@ -475,17 +475,13 @@ const TESTS = {
      * @param {number} level  basement level
      * @param {string} challenge  value from CHALLENGE_MAP
      */
-    MONSTER: function(level, challenge) {
+    MONSTER: function (level, challenge) {
         const m = toMonster(challenge[1]);
 
         print("Level " + level + " has you fighting " + indefiniteArticle(m.name), "green");
 
         let combatItem;
         const attackStat = myHighestBuffedStat();
-
-        putCloset(toItem('divine can of silly string'), itemAmount(toItem('divine can of silly string')));
-        putCloset(toItem('divine blowout'), itemAmount(toItem('divine blowout')));
-        putCloset(toItem('divine noisemaker'), itemAmount(toItem('divine noisemaker')));
 
         switch (attackStat) {
             case MUS:
@@ -499,11 +495,16 @@ const TESTS = {
                 break;
         }
 
+        cliExecute('refresh inventory');
+        [toItem('divine can of silly string'), toItem('divine blowout'), toItem('divine noisemaker')].forEach((item) => {
+            if (item !== combatItem) {
+                putCloset(item, itemAmount(item));
+            }
+        });
+
         retrieveItem(10, combatItem);
         retrieveItem(1, toItem('gas balloon'));
-        retrieveItem(4, toItem('gas can'));
         cliExecute("maximize effective, hp, dr, da, " + attackStat);
-        // cliExecute("maximize effective, hp, dr, da");
 
         if (ARGS.ignoreMonsterCheck || checkMonster(level, m)) {
             restoreHp(myMaxhp());
@@ -520,7 +521,7 @@ const TESTS = {
      * @param {number} level  basement level
      * @param {string} challenge  value from CHALLENGE_MAP
      */
-    MP: function(level) {
+    MP: function (level) {
         print("Level " + level + " tests your MP", "green");
 
         const required = requiredMp(level);
@@ -537,7 +538,7 @@ const TESTS = {
      * Handle HP test for the given level
      * @param {number} level  basement level
      */
-    HP: function(level) {
+    HP: function (level) {
         print("Level " + level + " tests your HP", "green");
 
         const required = requiredHp(level);
@@ -555,7 +556,7 @@ const TESTS = {
      * @param {number} level  basement level
      * @param {string} challenge  value from CHALLENGE_MAP
      */
-    ELEMENT: function(level, challenge) {
+    ELEMENT: function (level, challenge) {
         const e1 = toElement(challenge[1]);
         const e2 = toElement(challenge[2]);
 
@@ -571,7 +572,7 @@ const TESTS = {
         restoreHp(requiredElement(level, e1, e2) + 1);
         dive();
     },
-    REWARD: function(level, challenge) {
+    REWARD: function (level, challenge) {
         print("Level " + level + " gives you a reward", "green");
 
         if (challenge[1] === '500') {
@@ -580,7 +581,7 @@ const TESTS = {
 
         dive();
     },
-    BUFF: function(level, challenge) {
+    BUFF: function (level, challenge) {
         const stat1 = toStat(challenge[1]);
         const stat2 = toStat(challenge[2]);
 
